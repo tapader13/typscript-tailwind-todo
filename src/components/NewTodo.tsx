@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addtodos } from '../redux/todoSlice';
-
+import { motion } from 'framer-motion';
 const NewTodo = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState<Todo['title']>('');
@@ -43,12 +43,17 @@ const NewTodo = () => {
             ></textarea>
           </div>
           <div className=' flex justify-center mt-7'>
-            <button
+            <motion.button
+              whileDrag={{ scale: 1.2 }}
+              drag='x'
+              dragConstraints={{ left: -0, right: 0 }}
+              dragElastic={true}
+              dragTransition={{ bounceStiffness: 600, bounceDamping: 10 }}
               className=' bg-slate-700 px-4 py-[10px] text-white rounded-full font-semibold'
               type='submit'
             >
               Add Todo
-            </button>
+            </motion.button>
           </div>
         </form>
       </div>
